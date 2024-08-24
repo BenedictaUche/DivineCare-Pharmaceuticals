@@ -41,18 +41,18 @@ const Navbar = () => {
           </span> */}
         </div>
         <div className="hidden md:flex space-x-6 items-center">
-          <a href="/" className="hover:text-gray-300 text-base font-medium">
+          <Link href="/" className="hover:text-gray-300 text-base font-medium">
             Home
-          </a>
-          <a href="#" className="hover:text-gray-300 text-base font-medium">
+          </Link>
+          <Link href="#" className="hover:text-gray-300 text-base font-medium">
             About us
-          </a>
-          <a href="#" className="hover:text-gray-300 text-base font-medium">
+          </Link>
+          <Link href="#" className="hover:text-gray-300 text-base font-medium">
             Shop
-          </a>
-          <a href="#" className="hover:text-gray-300 text-base font-medium">
+          </Link>
+          <Link href="#" className="hover:text-gray-300 text-base font-medium">
             Contact us
-          </a>
+          </Link>
           <div className="flex items-center gap-2">
             <Menubar>
               <MenubarMenu>
@@ -86,18 +86,18 @@ const Navbar = () => {
 
       {navOpen && (
         <div className="md:hidden flex flex-col mt-4 space-y-2">
-          <a href="#" className="hover:text-gray-300">
+          <Link href="/" className="hover:text-gray-300">
             Home
-          </a>
-          <a href="#" className="hover:text-gray-300">
+          </Link>
+          <Link href="#" className="hover:text-gray-300">
             About us
-          </a>
-          <a href="#" className="hover:text-gray-300">
+          </Link>
+          <Link href="#" className="hover:text-gray-300">
             Shop
-          </a>
-          <a href="#" className="hover:text-gray-300">
+          </Link>
+          <Link href="#" className="hover:text-gray-300">
             Contact us
-          </a>
+          </Link>
           <div className="flex items-center gap-2">
             <Menubar>
               <MenubarMenu>

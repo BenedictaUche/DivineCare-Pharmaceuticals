@@ -1,6 +1,7 @@
 import { Mail, Phone } from "lucide-react";
 import React from "react";
 import { Facebook, Instagram, Twitter } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -24,20 +25,20 @@ const Footer = () => {
             Lagos - Nigeria
           </p>
           <div className="mt-4">
-            <a
+            <Link
               href="mailto:divinecareogba@gmail.com"
               className="flex items-center text-gray-400 hover:text-[#009E7F] transition-colors"
             >
               <Mail size={20} className="mr-2" />
               divinecareogba@gmail.com
-            </a>
-            <a
+            </Link>
+            <Link
               href="tel:+2348108085857"
               className="flex items-center mt-4 text-gray-400 hover:text-[#009E7F] transition-colors"
             >
               <Phone size={20} className="mr-2" />
               +2348108085857
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -45,15 +46,15 @@ const Footer = () => {
         <div className="md:w-1/3">
           <h3 className="font-semibold text-xl mb-4 text-white">Follow Us</h3>
           <div className="flex space-x-6">
-            <a href="#" aria-label="Facebook" className="hover:text-[#009E7F]">
+            <Link href="#" aria-label="Facebook" className="hover:text-[#009E7F]">
               <Facebook size={28} className="h-7 w-7 text-gray-400 transition-colors" />
-            </a>
-            <a href="#" aria-label="Instagram" className="hover:text-[#009E7F]">
+            </Link>
+            <Link href="#" aria-label="Instagram" className="hover:text-[#009E7F]">
               <Instagram size={28} className="h-7 w-7 text-gray-400 transition-colors" />
-            </a>
-            <a href="#" aria-label="Twitter" className="hover:text-[#009E7F]">
+            </Link>
+            <Link href="#" aria-label="Twitter" className="hover:text-[#009E7F]">
               <Twitter size={28} fill="#009E7F" className="h-7 w-7 text-gray-400 transition-colors" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -64,9 +65,9 @@ const Footer = () => {
           &copy; 2024 DivineCarePharmaceuticalsOgba, All rights reserved. Powered by techwriterb.
         </p>
         <div className="flex space-x-6 items-center mt-4 md:mt-0">
-          <a href="#" className="text-gray-500 text-sm hover:text-[#009E7F] transition-colors">
+          <Link href="#" className="text-gray-500 text-sm hover:text-[#009E7F] transition-colors">
             Privacy Policy
-          </a>
+          </Link>
           <a href="#" className="text-gray-500 text-sm hover:text-[#009E7F] transition-colors">
             Terms of Service
           </a>
