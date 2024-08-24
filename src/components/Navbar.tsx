@@ -30,7 +30,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-[#009e7f] text-white px-4 py-6 fixed w-full z-50">
+    <nav className="bg-white text-black shadow-md px-4 py-6 fixed w-full z-50">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <span className="text-2xl font-bold">
@@ -38,22 +38,22 @@ const Navbar = () => {
           </span>
         </div>
         <div className="hidden md:flex space-x-6 items-center">
-          <a href="#" className="hover:text-gray-300 text-lg font-medium">
+          <a href="#" className="hover:text-gray-300 text-base font-medium">
             Home
           </a>
-          <a href="#" className="hover:text-gray-300 text-lg font-medium">
+          <a href="#" className="hover:text-gray-300 text-base font-medium">
             About us
           </a>
-          <a href="#" className="hover:text-gray-300 text-lg font-medium">
+          <a href="#" className="hover:text-gray-300 text-base font-medium">
             Shop
           </a>
-          <a href="#" className="hover:text-gray-300 text-lg font-medium">
+          <a href="#" className="hover:text-gray-300 text-base font-medium">
             Contact us
           </a>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <Menubar>
               <MenubarMenu>
-                <MenubarTrigger className="cursor-pointer"><CircleUserRound size={24} /></MenubarTrigger>
+                <MenubarTrigger className="cursor-pointer"><CircleUserRound size={24} className="text-[#22C55E]" /></MenubarTrigger>
                 <MenubarContent>
                   <MenubarItem className="cursor-pointer">
                     <Link href="/auth/signup">Sign up</Link>
@@ -69,7 +69,7 @@ const Navbar = () => {
             </Menubar>
 
             <div onClick={() => setIsCartModalOpen(true)} className="cursor-pointer inline-flex items-center gap-1">
-              <ShoppingBasket size={24} />
+              <ShoppingBasket size={24} className="text-[#22C55E]" />
               <span className="ml-2">{cartItems.length}</span>
             </div>
           </div>

@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { db } from "@/lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 type Props = {
   product: Product;
@@ -91,7 +92,14 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   return (
     <>
       <Navbar />
+
       <div className="container mx-auto p-4 pt-32">
+        {/* Breadcrumb */}
+        <nav className="mb-4 text-sm text-gray-500">
+          <Link href="/" className="text-[#009e7f] hover:text-[#007b65] font-normal text-base">Home</Link> /
+          <span className="text-gray-700 font-normal text-base">Product</span> /
+          <span className="text-gray-700 font-normal text-base">{product.fields.title}</span>
+        </nav>
         <div className="flex flex-col md:flex-row gap-14">
           <div className="md:w-1/3">
             <img
@@ -108,8 +116,8 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               <span className="line-through text-gray-400">
               ₦{product.fields.price + 100}
               </span>
-              <span className="text-green-600 font-bold ml-2">
-              ₦{product.fields.price}
+              <span className="text-green-600 font-bold ml-2 underline">
+              ₦{product.fields.price}.00
               </span>
             </p>
             <p className=" text-lg text-gray-600 mb-6">
@@ -162,7 +170,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
           </div>
         </div>
 
-        <Tabs defaultValue="account" className="w-full mt-8">
+        <Tabs defaultValue="reviews" className="w-full mt-8">
           <TabsList>
             <TabsTrigger value="description">Description</TabsTrigger>
             <TabsTrigger value="additionalInfo">
