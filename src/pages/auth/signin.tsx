@@ -76,7 +76,7 @@ const SignIn = () => {
         {/* Right side  */}
         <div className="w-full">
           <div>
-            <img className="mx-auto h-12 w-auto" src="/images/logo.svg" alt="Your Pharmacy Logo" />
+            <img className="mx-auto h-12 w-auto" src="/images/divinecarelogo.png" alt="Your Pharmacy Logo" />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Welcome back</h2>
           </div>
           <form onSubmit={handleSignIn} className="mt-8 space-y-6">
