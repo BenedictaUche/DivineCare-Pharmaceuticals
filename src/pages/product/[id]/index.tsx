@@ -141,18 +141,18 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               <img
                 src={product.fields.productImage.fields.file.url}
                 alt={product.fields.title}
-                className="w-64 h-64 rounded-lg shadow-lg"
+                className="w-fit h-64 rounded-lg"
               />
               <div className="flex space-x-2 mt-4">
                 <img
                   src={product.fields.productImage.fields.file.url}
                   alt="Thumbnail"
-                  className="w-12 h-12 object-cover border border-gray-200 rounded"
+                  className="w-fit h-12 object-cover border border-gray-200 rounded"
                 />
                 <img
                   src={product.fields.productImage.fields.file.url}
                   alt="Thumbnail"
-                  className="w-12 h-12 object-cover border border-gray-200 rounded"
+                  className="w-fit h-12 object-cover border border-gray-200 rounded"
                 />
               </div>
             </div>

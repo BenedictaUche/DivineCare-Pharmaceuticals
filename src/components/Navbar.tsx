@@ -15,6 +15,8 @@ import { useCart } from "../../context/CartContext";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/auth/AuthContext";
 
+
+
 const Navbar = () => {
   const [navOpen, setNavOpen] = useState(false);
   const [open, setOpen] = useState(false);

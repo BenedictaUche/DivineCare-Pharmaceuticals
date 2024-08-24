@@ -68,6 +68,7 @@ const ProductSlider = () => {
 
   const onPrev = React.useCallback(() => slider.current?.prev(), [slider]);
   const onNext = React.useCallback(() => slider.current?.next(), [slider]);
+
   return (
     <div className={cn(s.root, className)} ref={sliderContainerRef}>
       <div
