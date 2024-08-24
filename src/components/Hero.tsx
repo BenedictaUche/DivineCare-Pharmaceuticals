@@ -17,7 +17,7 @@ const Hero = ({ onSearch }: { onSearch: (query: string) => void }) => {
       style={{ backgroundImage: "url('/images/medical-background-banner.jpg')" }}
     >
       <div className="container mx-auto text-center p-6 rounded z-50">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Find Product</h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Find Products</h1>
         <div className="flex justify-center align-middle mt-10">
           <Input
             type="text"

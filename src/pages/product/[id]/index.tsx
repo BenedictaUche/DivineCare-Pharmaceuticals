@@ -266,7 +266,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               Additional information
             </h2>
           </TabsContent>
-          <TabsContent value="reviews" className="flex flex-col gap-8 w-1/2">
+          <TabsContent value="reviews" className="flex flex-col gap-8 w-full md:w-1/2">
             <h2 className="font-bold text-3xl">Reviews</h2>
             <div>
               <p className="text-xl text-gray-400">There are no reviews yet</p>

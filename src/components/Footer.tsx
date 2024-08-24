@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto flex flex-col md:flex-row justify-between gap-8 items-start">
         {/* Logo and Description */}
         <div className="md:w-1/3">
-          <img src="/images/logo.svg" alt="MedicaShop" className="mb-6 h-12" />
+          <img src="/images/divinecarelogo.png" alt="MedicaShop" className="mb-6 h-12" />
           <p className="text-gray-400 leading-relaxed">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
             tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
