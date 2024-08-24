@@ -276,6 +276,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 <span className="text-red-500 font-medium">
                   Required fields are marked *
                 </span>
+
               </p>
             </div>
             <Form {...form}>
