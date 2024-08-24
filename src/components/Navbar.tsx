@@ -115,7 +115,6 @@ const Navbar = () => {
                 </MenubarContent>
               </MenubarMenu>
             </Menubar>
-
             <div onClick={() => setIsCartModalOpen(true)} className="cursor-pointer inline-flex items-center gap-1">
               <ShoppingBasket size={24} className="text-[#22C55E]" />
               <span className="ml-2">{cartItems.length}</span>
