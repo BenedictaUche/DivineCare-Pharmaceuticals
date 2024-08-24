@@ -135,7 +135,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
         </nav>
 
         <div className="flex flex-col md:flex-row gap-14 bg-[#f6f4f2] rounded-xl py-12">
-          {/* Product Image Section */}
+          {/* Product Img Section */}
           <div className="md:w-1/2 flex justify-center">
             <div className="flex flex-col items-center">
               <img
