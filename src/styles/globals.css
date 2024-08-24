@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --e-global-color-accent: #FFFFFF2B;
+    --e-global-color-cfa1f76: #FAFAFA;
+}
+
+
+/* .background {
+    background-color: var(--e-global-color-accent);
+    background-image: linear-gradient(180deg, var(--e-global-color-accent) 0%, var(--e-global-color-cfa1f76) 85%);
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+} */
+
+.overlay {
+    background-color: transparent;
+    background-image: linear-gradient(180deg, var(--e-global-color-accent) 0%, var(--e-global-color-cfa1f76) 85%);
+    opacity: 1;
+    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+    height: 100%;
+    width: 100%;
+    /* top: 0; */
+    left: 0;
+    bottom: 0;
+    position: absolute;
+}
