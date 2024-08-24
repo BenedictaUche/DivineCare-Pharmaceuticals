@@ -36,9 +36,6 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <img src="/images/divinecarelogo.png" alt="MedicaShop" className=" h-12" />
-          {/* <span className="text-2xl font-bold">
-            DivineCare<strong>Ogba</strong>
-          </span> */}
         </div>
         <div className="hidden md:flex space-x-6 items-center">
           <Link href="/" className="hover:text-gray-300 text-base font-medium">
