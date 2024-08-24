@@ -6,8 +6,16 @@ import { Product } from "@/lib/types";
 import Navbar from "@/components/Navbar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Truck, ShieldPlus, Star, Loader2Icon, Plus } from "lucide-react";
+import React, {
+  Children,
+  isValidElement,
+  useState,
+  useRef,
+  useEffect,
+} from "react";
+import cn from "clsx";
+import { a } from "@react-spring/web";
 import { useToast } from "@/components/ui/use-toast";
-import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
 import { ratingFormSchema } from "@/lib/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,6 +28,8 @@ import { db } from "@/lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
 
 type Props = {
   product: Product;
@@ -28,6 +38,22 @@ type Props = {
 const ProductPage: React.FC<Props> = ({ product }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [rating, setRating] = useState(0); // State to hold the rating value
+  const animation = { duration: 50000, easing: (t: number) => t };
+  const [sliderRef] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    renderMode: "performance",
+    drag: false,
+    created(s) {
+      s.moveToIdx(5, true, animation);
+    },
+    updated(s) {
+      s.moveToIdx(s.track.details.abs + 5, true, animation);
+    },
+    animationEnded(s) {
+      s.moveToIdx(s.track.details.abs + 5, true, animation);
+    },
+  });
+
   const { toast } = useToast();
   const router = useRouter();
 
@@ -72,14 +98,14 @@ const ProductPage: React.FC<Props> = ({ product }) => {
     };
     try {
       // Save the review to Firebase
-      setIsLoading(true)
+      setIsLoading(true);
       await addDoc(collection(db, "reviews"), reviewData);
       toast({
         title: "Review submitted",
         description: "Thank you for your feedback!",
         variant: "default",
       });
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (error) {
       toast({
         title: "Error submitting review",
@@ -96,11 +122,19 @@ const ProductPage: React.FC<Props> = ({ product }) => {
       <div className="container mx-auto p-4 pt-32">
         {/* Breadcrumb */}
         <nav className="mb-4 text-sm text-gray-500">
-          <Link href="/" className="text-[#009e7f] hover:text-[#007b65] font-normal text-base">Home</Link> /
-          <span className="text-gray-700 font-normal text-base">Product</span> /
-          <span className="text-gray-700 font-normal text-base">{product.fields.title}</span>
+          <Link
+            href="/"
+            className="text-[#009e7f] hover:text-[#007b65] font-normal text-base"
+          >
+            Home
+          </Link>{" "}
+          / <span className="text-gray-700 font-normal text-base">Product</span>{" "}
+          / <span className="text-gray-700 font-normal text-base">
+            {product.fields.title}
+          </span>
         </nav>
-        <div className="flex flex-col md:flex-row gap-14">
+
+        <div className="flex flex-col md:flex-row gap-14 bg-[#f6f4f2] rounded-xl py-12">
           {/* Product Image Section */}
           <div className="md:w-1/2 flex justify-center">
             <div className="flex flex-col items-center">
@@ -128,7 +162,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
           <div className="md:w-1/2 flex flex-col">
             <h1 className="text-4xl font-bold mb-4">{product.fields.title}</h1>
             <p className="text-xl text-[#22C55E] font-semibold mb-4">
-            ₦{product.fields.price}.00
+              ₦{product.fields.price}.00
             </p>
 
             <div className="flex flex-col space-y-4 mb-6">
@@ -167,13 +201,52 @@ const ProductPage: React.FC<Props> = ({ product }) => {
 
             <CustomButton
               onClick={handleAddToCart}
-              className="bg-[#22C55E] flex items-contain gap-4 w-fit text-white py-4 px-8 shadow-lg hover:bg-[#22C55E]/50 rounded-3xl"
+              className="bg-[#22C55E] flex items-contain gap-4 w-1/2 h-12 text-white py-4 px-8 shadow-lg hover:bg-[#22C55E]/50 rounded-3xl"
               disabled={isLoading}
               isLoading={isLoading}
             >
-              <Plus size={20}/>
+              <Plus size={20} />
               Add to Cart
             </CustomButton>
+          </div>
+        </div>
+
+        {/* Product image slider */}
+        <div ref={sliderRef} className="keen-slider my-8 gap-4">
+          <div className="keen-slider__slide number-slide1 w-fit bg-[#f6f4f2] py-8 rounded-md">
+            <img
+              src={product.fields.productImage.fields.file.url}
+              alt={product.fields.title}
+              className="w-fit h-32 object-cover mx-auto" // Adjust the width and height here
+            />
+          </div>
+          <div className="keen-slider__slide number-slide2 w-fit bg-[#f6f4f2] py-8 rounded-md">
+            <img
+              src={product.fields.productImage.fields.file.url}
+              alt={product.fields.title}
+              className="w-fit h-32 object-cover mx-auto"
+            />
+          </div>
+          <div className="keen-slider__slide number-slide3 w-fit bg-[#f6f4f2] py-8 rounded-md">
+            <img
+              src={product.fields.productImage.fields.file.url}
+              alt={product.fields.title}
+              className="w-fit h-32 object-cover mx-auto"
+            />
+          </div>
+          <div className="keen-slider__slide number-slide4 w-fit bg-[#f6f4f2] py-8 rounded-md">
+            <img
+              src={product.fields.productImage.fields.file.url}
+              alt={product.fields.title}
+              className="w-fit h-32 object-cover mx-auto"
+            />
+          </div>
+          <div className="keen-slider__slide number-slide5 w-fit bg-[#f6f4f2] py-8 rounded-md">
+            <img
+              src={product.fields.productImage.fields.file.url}
+              alt={product.fields.title}
+              className="w-fit h-32 object-cover mx-auto"
+            />
           </div>
         </div>
 
@@ -196,9 +269,14 @@ const ProductPage: React.FC<Props> = ({ product }) => {
           <TabsContent value="reviews" className="flex flex-col gap-8 w-1/2">
             <h2 className="font-bold text-3xl">Reviews</h2>
             <div>
-            <p className="text-xl text-gray-400">There are no reviews yet</p>
-            <p className="text-xl text-gray-400 mt-2">{`Be the first to review ${product.fields.title}.
-            Your email address will not be published.`}  <span className="text-red-500 font-medium">Required fields are marked *</span></p>
+              <p className="text-xl text-gray-400">There are no reviews yet</p>
+              <p className="text-xl text-gray-400 mt-2">
+                {`Be the first to review ${product.fields.title}.
+            Your email address will not be published.`}{" "}
+                <span className="text-red-500 font-medium">
+                  Required fields are marked *
+                </span>
+              </p>
             </div>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="">
