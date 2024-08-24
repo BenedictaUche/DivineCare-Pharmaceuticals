@@ -12,7 +12,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase app only if it hasn't been initialized yet
-const app = initializeApp(firebaseConfig)
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 export const auth = getAuth(app);
 export const db: Firestore = getFirestore(app);
