@@ -5,7 +5,7 @@ import HEAD from "next/head";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "@/components/ui/toaster";
 import { CartProvider } from "../../context/CartContext";
-
+import { AuthProvider } from "../../context/auth/AuthContext";
 import { ReactElement, ReactNode } from "react";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -36,9 +36,11 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         shadow="0 0 10px rgba(0, 0, 0, 0.3)"
       />
       <Toaster />
+      <AuthProvider>
       <CartProvider>
         {getLayout(<Component {...pageProps} />)}
       </CartProvider>
+      </AuthProvider>
     </>
   );
 }

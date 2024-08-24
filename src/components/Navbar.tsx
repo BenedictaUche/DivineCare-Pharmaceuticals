@@ -13,12 +13,16 @@ import { logout } from "../../context/auth/auth";
 import CartModal from "./Modals/CartModal";
 import { useCart } from "../../context/CartContext";
 import { useRouter } from "next/router";
+import { useAuth } from "../../context/auth/AuthContext";
 
 const Navbar = () => {
   const [navOpen, setNavOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const { cartItems } = useCart();
   const router = useRouter();
+  const { user } = useAuth();
+  console.log(user)
 
   const handleLogout = () => {
     logout();
@@ -94,7 +98,12 @@ const Navbar = () => {
         </div>
       )}
 
-      {isCartModalOpen && <CartModal closeModal={() => setIsCartModalOpen(false)} />}
+      {isCartModalOpen &&
+      <CartModal
+        open={isCartModalOpen}
+        setOpen={setIsCartModalOpen}
+        title="Your Cart"
+      />}
     </nav>
   );
 };

@@ -1,7 +1,7 @@
 import { doc, setDoc, updateDoc, arrayUnion, getDoc, collection, getDocs } from 'firebase/firestore';
 import { auth, db } from './firebase';
 
-export const addToCart = async (productId: string, quantity: number, productName: string) => {
+export const addToCart = async (productId: string, quantity: number, productName: string, productPrice: number) => {
     const user = auth.currentUser;
 
     if (!user) {
@@ -23,13 +23,13 @@ export const addToCart = async (productId: string, quantity: number, productName
       } else {
         // Add the new item to the cart
         await updateDoc(cartRef, {
-          items: arrayUnion({ productId, quantity, productName }),
+          items: arrayUnion({ productId, quantity, productName, productPrice }),
         });
       }
     } else {
       // Create a new cart for the user
       await setDoc(cartRef, {
-        items: [{ productId, quantity, productName }],
+        items: [{ productId, quantity, productName, productPrice }],
       });
     }
   };

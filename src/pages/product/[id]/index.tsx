@@ -35,7 +35,8 @@ const ProductPage: React.FC<Props> = ({ product }) => {
     await addToCart(
       product.sys.id,
       product.fields.instock,
-      product.fields.title
+      product.fields.title,
+      product.fields.price
     );
     setIsLoading(false);
     toast({
@@ -105,10 +106,10 @@ const ProductPage: React.FC<Props> = ({ product }) => {
             <h1 className="text-4xl font-bold mb-2">{product.fields.title}</h1>
             <p className="text-lg text-gray-700 mb-4">
               <span className="line-through text-gray-400">
-                ${product.fields.price + 8}
+              ₦{product.fields.price + 100}
               </span>
               <span className="text-green-600 font-bold ml-2">
-                ${product.fields.price}
+              ₦{product.fields.price}
               </span>
             </p>
             <p className=" text-lg text-gray-600 mb-6">

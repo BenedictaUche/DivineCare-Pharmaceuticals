@@ -1,9 +1,12 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import { useAuth } from "./auth/AuthContext";
+import { db } from "@/lib/firebase";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 type CartItem = {
-  id: string;
-  name: string;
-  price: number;
+  productId: string;
+  productName: string;
+  productPrice: number;
   quantity: number;
 };
 
@@ -16,14 +19,41 @@ type CartContextType = {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
+  const { user } = useAuth();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = (item: CartItem) => {
-    setCartItems((prevItems) => [...prevItems, item]);
+  useEffect(() => {
+    if (user) {
+      // Fetch cart items from Firestore
+      const fetchCart = async () => {
+        const cartDoc = await getDoc(doc(db, "carts", user.uid));
+        if (cartDoc.exists()) {
+          setCartItems(cartDoc.data().items);
+        }
+      };
+
+      fetchCart();
+    } else {
+      setCartItems([]);
+    }
+  }, [user]);
+
+  const saveCartToFirebase = async (items: any) => {
+    if (user) {
+      await setDoc(doc(db, "carts", user.uid), { items });
+    }
   };
 
-  const removeFromCart = (id: string) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  const addToCart = (item: CartItem) => {
+    const updatedCart = [...cartItems, item];
+    setCartItems(updatedCart);
+    saveCartToFirebase(updatedCart);
+  };
+
+  const removeFromCart = (itemId: string) => {
+    const updatedCart = cartItems.filter((item) => item.productId !== itemId);
+    setCartItems(updatedCart);
+    saveCartToFirebase(updatedCart);
   };
 
   return (

@@ -12,10 +12,6 @@ import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// type Product = {
-//   sys: { id: string };
-//   fields: { name: string; price: number };
-// };
 
 type Props = {
   products: Product[];
@@ -67,7 +63,7 @@ const Home: React.FC<Props> = ({ products }) => {
                 <h3 className="text-md font-semibold">
                   {product.fields.title}
                 </h3>
-                <p className="text-gray-600">${product.fields.price}</p>
+                <p className="text-gray-600">₦ {product.fields.price}</p>
 
                 <p className="">
                   {truncateDescription(

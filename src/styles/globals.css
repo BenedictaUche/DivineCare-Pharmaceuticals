@@ -11,6 +11,9 @@
     --e-global-color-cfa1f76: #FAFAFA;
 }
 
+body {
+    background-color: #f8f8f8;
+}
 
 /* .background {
     background-color: var(--e-global-color-accent);
