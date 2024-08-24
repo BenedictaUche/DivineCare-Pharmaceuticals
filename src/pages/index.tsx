@@ -1,17 +1,12 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
+import { useState } from "react";
 import { GetStaticProps } from "next";
 import { getEntries } from "../lib/contentful";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
-import { useState } from "react";
 import { Product } from "@/lib/types";
 import { Heart, ShoppingBasket } from "lucide-react";
 import Footer from "@/components/Footer";
-
-const inter = Inter({ subsets: ["latin"] });
-
 
 type Props = {
   products: Product[];
@@ -19,6 +14,7 @@ type Props = {
 
 const Home: React.FC<Props> = ({ products }) => {
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const toggleFavorite = (productId: string) => {
     setFavorites((prevFavorites) =>
@@ -38,14 +34,16 @@ const Home: React.FC<Props> = ({ products }) => {
     return description;
   };
 
-  console.log(products);
-
-  const displayedProducts = products.slice(0, 14);
+  const displayedProducts = products
+    .filter(product =>
+      product.fields.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .slice(0, 14);
 
   return (
     <div className="">
       <Navbar />
-      <Hero />
+      <Hero onSearch={(query) => setSearchTerm(query)} />
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-bold mb-4">Products</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -101,15 +99,6 @@ const Home: React.FC<Props> = ({ products }) => {
             </div>
           ))}
         </div>
-        {/* <ul>
-        {products.map((product) => (
-          <li key={product.sys.id} className="mb-4">
-            <Link href={`/product/${product.sys.id}`} className="text-blue-500">
-              {product.fields.title} - ${product.fields.price}
-            </Link>
-          </li>
-        ))}
-      </ul> */}
       </div>
       <Footer />
     </div>

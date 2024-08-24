@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { Product } from "@/lib/types";
 import Navbar from "@/components/Navbar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Truck, ShieldPlus, Star, Loader2Icon } from "lucide-react";
+import { Truck, ShieldPlus, Star, Loader2Icon, Plus } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
@@ -101,72 +101,79 @@ const ProductPage: React.FC<Props> = ({ product }) => {
           <span className="text-gray-700 font-normal text-base">{product.fields.title}</span>
         </nav>
         <div className="flex flex-col md:flex-row gap-14">
-          <div className="md:w-1/3">
-            <img
-              src={product.fields.productImage.fields.file.url}
-              alt={product.fields.title}
-              className="w-full rounded-lg shadow-lg"
-            />
-          </div>
-
-          {/* product details */}
-          <div className="md:w-1/3">
-            <h1 className="text-4xl font-bold mb-2">{product.fields.title}</h1>
-            <p className="text-lg text-gray-700 mb-4">
-              <span className="line-through text-gray-400">
-              ₦{product.fields.price + 100}
-              </span>
-              <span className="text-green-600 font-bold ml-2 underline">
-              ₦{product.fields.price}.00
-              </span>
-            </p>
-            <p className=" text-lg text-gray-600 mb-6">
-              {product.fields.description.content[0]?.content[0]?.value}
-            </p>
-
-            {/* review */}
-            <div className="flex items-center mb-4">
-              <span className="text-yellow-500">★★★★★</span>
-              <span className="ml-2 text-gray-600">(Customer Review 0)</span>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <CustomButton
-                onClick={handleAddToCart}
-                className="bg-green-500 text-white py-2 px-4 rounded shadow hover:bg-green-600"
-                disabled={isLoading}
-                isLoading={isLoading}
-              >
-                Add to Cart
-              </CustomButton>
-              <button
-                onClick={handleCheckout}
-                className="bg-blue-500 text-white py-2 px-4 rounded shadow hover:bg-blue-600"
-              >
-                Checkout via WhatsApp
-              </button>
+          {/* Product Image Section */}
+          <div className="md:w-1/2 flex justify-center">
+            <div className="flex flex-col items-center">
+              <img
+                src={product.fields.productImage.fields.file.url}
+                alt={product.fields.title}
+                className="w-64 h-64 rounded-lg shadow-lg"
+              />
+              <div className="flex space-x-2 mt-4">
+                <img
+                  src={product.fields.productImage.fields.file.url}
+                  alt="Thumbnail"
+                  className="w-12 h-12 object-cover border border-gray-200 rounded"
+                />
+                <img
+                  src={product.fields.productImage.fields.file.url}
+                  alt="Thumbnail"
+                  className="w-12 h-12 object-cover border border-gray-200 rounded"
+                />
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-8 items-center align-middle text-center w-1/4 shadow-md rounded-md p-4">
-            <div className="mx-auto flex flex-col items-center">
-              <Truck size={64} className="text-[#009e7f]" />
-              <h3 className="text-xl font-semibold mb-4 text-[#009e7f]">
-                International Shipment
-              </h3>
-              <p className="text-sm text-gray-600">
-                Your orders are shipped seamlessly between countries.
-              </p>
+          {/* Product Details Section */}
+          <div className="md:w-1/2 flex flex-col">
+            <h1 className="text-4xl font-bold mb-4">{product.fields.title}</h1>
+            <p className="text-xl text-[#22C55E] font-semibold mb-4">
+            ₦{product.fields.price}.00
+            </p>
+
+            <div className="flex flex-col space-y-4 mb-6">
+              <div className="flex items-center space-x-4">
+                <span className="text-gray-400">Color:</span>
+                <div className="flex space-x-2">
+                  <button className="w-8 h-8 rounded-full border-2 border-blue-500 bg-black"></button>
+                  <button className="w-8 h-8 rounded-full border-2 border-gray-300 bg-white"></button>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-4">
+                <span className="text-gray-400">Size:</span>
+                <div className="grid grid-cols-3 gap-2">
+                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
+                    6 x 8 inch
+                  </button>
+                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
+                    7 x 9 inch
+                  </button>
+                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
+                    8 x 11 inch
+                  </button>
+                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
+                    9 x 12 inch
+                  </button>
+                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
+                    10 x 15 inch
+                  </button>
+                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
+                    12 x 16 inch
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="mx-auto flex flex-col items-center">
-              <ShieldPlus size={64} className="text-[#009e7f]" />
-              <h3 className="text-xl font-semibold mt-6 mb-4 text-[#009e7f]">
-                30 Days Warranty
-              </h3>
-              <p className="text-sm text-gray-600">
-                You have the right to return your orders within 30 days.
-              </p>
-            </div>
+
+            <CustomButton
+              onClick={handleAddToCart}
+              className="bg-[#22C55E] flex items-contain gap-4 w-fit text-white py-4 px-8 shadow-lg hover:bg-[#22C55E]/50 rounded-3xl"
+              disabled={isLoading}
+              isLoading={isLoading}
+            >
+              <Plus size={20}/>
+              Add to Cart
+            </CustomButton>
           </div>
         </div>
 
