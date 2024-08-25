@@ -50,18 +50,22 @@ const Home: React.FC<Props> = ({ products }) => {
           {displayedProducts.map((product) => (
             <div
               key={product.sys.id}
-              className="relative p-4 flex flex-col gap-4 rounded-md transition duration-300 ease-in-out cursor-pointer"
+              className="relative p-4 flex flex-col gap-2 rounded-md transition duration-300 ease-in-out cursor-pointer"
             >
               <Link href={`/product/${product.sys.id}`}>
+              <div className="img-container bg-[#f5f5f5] py-10 px-4 relative">
                 <img
                   src={product.fields.productImage.fields.file.url}
                   alt={product.fields.title}
                   className="w-full h-40 object-cover object-center mb-4 rounded-md"
                 />
-                <h3 className="text-md font-semibold">
+                <div className="quickView bg-[#fafafa] absolute bottom-0 left-0 right-0 py-4"><p className="text-center ">Quick view</p></div>
+                </div>
+                </Link>
+                <h3 className="text-md font-semibold text-center">
                   {product.fields.title}
                 </h3>
-                <p className="text-gray-600">₦ {product.fields.price}</p>
+                <p className="text-gray-600 text-center text-xl">₦ {product.fields.price}</p>
 
                 <p className="">
                   {truncateDescription(
@@ -95,7 +99,7 @@ const Home: React.FC<Props> = ({ products }) => {
                     />
                   )}
                 </div>
-              </Link>
+
             </div>
           ))}
         </div>

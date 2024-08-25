@@ -14,6 +14,7 @@ import CartModal from "./Modals/CartModal";
 import { useCart } from "../../context/CartContext";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/auth/AuthContext";
+import Ads from "./Ads";
 
 
 
@@ -32,22 +33,24 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-white text-black shadow-md px-4 py-6 fixed w-full z-50">
+    <>
+    <Ads />
+    <div className="bg-white text-black px-4 py-6 fixed w-full z-50">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <img src="/images/divinecarelogo.png" alt="MedicaShop" className=" h-12" />
         </div>
         <div className="hidden md:flex space-x-6 items-center">
-          <Link href="/" className="hover:text-gray-300 text-base font-medium">
+          <Link href="/" className="hover:text-gray-300 text-lg font-medium">
             Home
           </Link>
-          <Link href="#" className="hover:text-gray-300 text-base font-medium">
+          <Link href="#" className="hover:text-gray-300 text-lg font-medium">
             About us
           </Link>
-          <Link href="#" className="hover:text-gray-300 text-base font-medium">
+          <Link href="#" className="hover:text-gray-300 text-lg font-medium">
             Shop
           </Link>
-          <Link href="#" className="hover:text-gray-300 text-base font-medium">
+          <Link href="#" className="hover:text-gray-300 text-lg font-medium">
             Contact us
           </Link>
           <div className="flex items-center gap-2">
@@ -118,6 +121,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+
       )}
 
       {isCartModalOpen &&
@@ -126,7 +130,8 @@ const Navbar = () => {
         setOpen={setIsCartModalOpen}
         title="Your Cart"
       />}
-    </nav>
+    </div>
+    </>
   );
 };
 
