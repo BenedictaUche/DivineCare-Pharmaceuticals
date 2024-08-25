@@ -8,6 +8,7 @@ import { Product } from "@/lib/types";
 import { Heart, ShoppingBasket } from "lucide-react";
 import Footer from "@/components/Footer";
 import QuickViewModal from "@/components/QuickViewModal";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   products: Product[];
@@ -115,6 +116,10 @@ const Home: React.FC<Props> = ({ products }) => {
 
             </div>
           ))}
+        </div>
+
+        <div className="flex justify-center mb-4 mt-6">
+        <Button className="bg-[#009E7F] mx-auto text-xl py-4 rounded-none w-1/3 h-[2.7em]">View all</Button>
         </div>
       </div>
       <Footer />

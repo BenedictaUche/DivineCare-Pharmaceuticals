@@ -6,20 +6,20 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-12">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between gap-8 items-start">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between gap-8">
         {/* Logo and Description */}
-        <div className="md:w-1/3">
+        <div className="">
           <img src="/images/divinecarelogo.png" alt="MedicaShop" className="mb-6 h-12" />
-          <p className="text-gray-400 leading-relaxed">
+          <p className="text-gray-400 leading-relaxed w-[40ch] text-lg">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
             tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
           </p>
         </div>
 
         {/* Contact Information */}
-        <div className="md:w-1/3">
-          <h3 className="font-semibold text-xl mb-4 text-white">Get in touch</h3>
-          <p className="text-gray-400">
+        <div className="">
+          <h3 className="font-semibold text-4xl mb-4 text-white">Get in touch</h3>
+          <p className="text-gray-400 text-lg">
             4, Adeyemi Alao Str., Oke-Ira Ogba
             <br />
             Lagos - Nigeria
@@ -27,14 +27,14 @@ const Footer = () => {
           <div className="mt-4">
             <Link
               href="mailto:divinecareogba@gmail.com"
-              className="flex items-center text-gray-400 hover:text-[#009E7F] transition-colors"
+              className="flex items-center text-gray-400 hover:text-[#009E7F] transition-colors text-lg"
             >
-              <Mail size={20} className="mr-2" />
+              <Mail size={20} className="mr-2 " />
               divinecareogba@gmail.com
             </Link>
             <Link
               href="tel:+2348108085857"
-              className="flex items-center mt-4 text-gray-400 hover:text-[#009E7F] transition-colors"
+              className="flex items-center mt-4 text-gray-400 hover:text-[#009E7F] transition-colors text-lg"
             >
               <Phone size={20} className="mr-2" />
               +2348108085857
@@ -42,10 +42,18 @@ const Footer = () => {
           </div>
         </div>
 
+        <div>
+          <h3 className="font-semibold text-4xl mb-4 text-white">Operation Hours</h3>
+          <div className="text-gray-400 text-lg">
+            <p>Monday - Saturday: 9:00am - 9:30pm</p>
+            <p>Sunday: 04:00pm - 9:00pm</p>
+          </div>
+        </div>
+
         {/* Social Media Links */}
-        <div className="md:w-1/3">
-          <h3 className="font-semibold text-xl mb-4 text-white">Follow Us</h3>
-          <div className="flex space-x-6">
+        <div className="">
+          <h3 className="font-semibold text-4xl mb-4 text-white">Follow Us</h3>
+          <div className="flex space-x-6 text-lg">
             <Link href="#" aria-label="Facebook" className="hover:text-[#009E7F]">
               <Facebook size={28} className="h-7 w-7 text-gray-400 transition-colors" />
             </Link>
