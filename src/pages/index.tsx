@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import { Product } from "@/lib/types";
 import { Heart, ShoppingBasket } from "lucide-react";
 import Footer from "@/components/Footer";
+import QuickViewModal from "@/components/QuickViewModal";
 
 type Props = {
   products: Product[];
@@ -15,6 +16,8 @@ type Props = {
 const Home: React.FC<Props> = ({ products }) => {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [openQuickView, setOpenQuickView] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const toggleFavorite = (productId: string) => {
     setFavorites((prevFavorites) =>
@@ -40,6 +43,13 @@ const Home: React.FC<Props> = ({ products }) => {
     )
     .slice(0, 14);
 
+  const handleOpenQuickViewModal = (product: Product) => {
+    return () => {
+      setSelectedProduct(product);
+      setOpenQuickView(true);
+    }
+  }
+
   return (
     <div className="">
       <Navbar />
@@ -52,60 +62,72 @@ const Home: React.FC<Props> = ({ products }) => {
               key={product.sys.id}
               className="relative p-4 flex flex-col gap-2 rounded-md transition duration-300 ease-in-out cursor-pointer"
             >
-              <Link href={`/product/${product.sys.id}`}>
               <div className="img-container bg-[#f5f5f5] py-10 px-4 relative">
                 <img
                   src={product.fields.productImage.fields.file.url}
                   alt={product.fields.title}
                   className="w-full h-40 object-cover object-center mb-4 rounded-md"
                 />
-                <div className="quickView bg-[#fafafa] absolute bottom-0 left-0 right-0 py-4"><p className="text-center ">Quick view</p></div>
-                </div>
-                </Link>
-                <h3 className="text-md font-semibold text-center">
-                  {product.fields.title}
-                </h3>
-                <p className="text-gray-600 text-center text-xl">₦ {product.fields.price}</p>
-
-                <p className="">
-                  {truncateDescription(
-                    product.fields.description.content[0].content[0].value,
-                    50
-                  )}
-                </p>
-
-                <button
-                  className="bg-primary text-white px-4 py-2 rounded-md mt-2 inline-flex gap-2 items-center w-full justify-center"
-                  onClick={() =>
-                    console.log(`Order Now: ${product.fields.title}`)
-                  }
+                <div
+                  className="quickView bg-[#fafafa] absolute bottom-0 left-0 right-0 py-4"
+                  onClick={handleOpenQuickViewModal(product)}
                 >
-                  <span>
-                    <ShoppingBasket />
-                  </span>
-                  Order Now
-                </button>
-                <div className="flex items-center mt-2 absolute p-4 right-0 top-0">
-                  {favorites.includes(product.sys.id) ? (
-                    <Heart
-                      fill="red"
-                      className="text-red-500 cursor-pointer h-6 w-6"
-                      onClick={() => toggleFavorite(product.sys.id)}
-                    />
-                  ) : (
-                    <Heart
-                      className="text-red-500 cursor-pointer h-6 w-6"
-                      onClick={() => toggleFavorite(product.sys.id)}
-                    />
-                  )}
+                  <p className="text-center ">Quick view</p>
                 </div>
+              </div>
+              <h3 className="text-md font-semibold text-center">
+                {product.fields.title}
+              </h3>
+              <p className="text-gray-600 text-center text-xl">₦ {product.fields.price}</p>
+
+              <p className="">
+                {truncateDescription(
+                  product.fields.description.content[0].content[0].value,
+                  50
+                )}
+              </p>
+
+              <button
+                className="bg-primary text-white px-4 py-2 rounded-md mt-2 inline-flex gap-2 items-center w-full justify-center"
+                onClick={() =>
+                  console.log(`Order Now: ${product.fields.title}`)
+                }
+              >
+                <span>
+                  <ShoppingBasket />
+                </span>
+                Order Now
+              </button>
+              <div className="flex items-center mt-2 absolute p-4 right-0 top-0">
+                {favorites.includes(product.sys.id) ? (
+                  <Heart
+                    fill="red"
+                    className="text-red-500 cursor-pointer h-6 w-6"
+                    onClick={() => toggleFavorite(product.sys.id)}
+                  />
+                ) : (
+                  <Heart
+                    className="text-red-500 cursor-pointer h-6 w-6"
+                    onClick={() => toggleFavorite(product.sys.id)}
+                  />
+                )}
+              </div>
 
             </div>
           ))}
         </div>
       </div>
       <Footer />
+
+      {selectedProduct && (
+        <QuickViewModal
+          open={openQuickView}
+          setOpen={setOpenQuickView}
+          productData={selectedProduct}
+        />
+      )}
     </div>
+
   );
 };
 
