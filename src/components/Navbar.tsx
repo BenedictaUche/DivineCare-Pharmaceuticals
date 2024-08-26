@@ -47,7 +47,7 @@ const Navbar = () => {
           <Link href="#" className="hover:text-gray-300 text-lg font-medium">
             About us
           </Link>
-          <Link href="#" className="hover:text-gray-300 text-lg font-medium">
+          <Link href="/allProducts" className="hover:text-gray-300 text-lg font-medium">
             Shop
           </Link>
           <Link href="#" className="hover:text-gray-300 text-lg font-medium">
@@ -92,7 +92,7 @@ const Navbar = () => {
           <Link href="#" className="hover:text-gray-300">
             About us
           </Link>
-          <Link href="#" className="hover:text-gray-300">
+          <Link href="/allProducts" className="hover:text-gray-300">
             Shop
           </Link>
           <Link href="#" className="hover:text-gray-300">

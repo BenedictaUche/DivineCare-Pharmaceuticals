@@ -179,26 +179,6 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 <p className="text-gray-500">
                   {product.fields.description.content[0]?.content[0]?.value}
                 </p>
-                {/* <div className="grid grid-cols-3 gap-2">
-                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
-                    6 x 8 inch
-                  </button>
-                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
-                    7 x 9 inch
-                  </button>
-                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
-                    8 x 11 inch
-                  </button>
-                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
-                    9 x 12 inch
-                  </button>
-                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
-                    10 x 15 inch
-                  </button>
-                  <button className="py-2 px-4 border rounded-lg hover:bg-gray-200">
-                    12 x 16 inch
-                  </button>
-                </div> */}
               </div>
             </div>
 

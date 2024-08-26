@@ -9,6 +9,7 @@ import { Heart, ShoppingBasket } from "lucide-react";
 import Footer from "@/components/Footer";
 import QuickViewModal from "@/components/QuickViewModal";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/router";
 
 type Props = {
   products: Product[];
@@ -19,6 +20,8 @@ const Home: React.FC<Props> = ({ products }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [openQuickView, setOpenQuickView] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  const route = useRouter()
 
   const toggleFavorite = (productId: string) => {
     setFavorites((prevFavorites) =>
@@ -44,11 +47,28 @@ const Home: React.FC<Props> = ({ products }) => {
     )
     .slice(0, 14);
 
+    console.log(
+      products.map((product) => {
+        return product.fields.category.fields.name
+      })
+    )
+    console.log(
+      products.map((product) => {
+        const subCategory = product.fields.subcategory
+        return subCategory.map((sub) => {
+          return sub.fields.name
+        })
+      })
+    )
   const handleOpenQuickViewModal = (product: Product) => {
     return () => {
       setSelectedProduct(product);
       setOpenQuickView(true);
     }
+  }
+
+  const handleAllProducts = () => {
+    route.push('/allProducts')
   }
 
   return (
@@ -119,7 +139,7 @@ const Home: React.FC<Props> = ({ products }) => {
         </div>
 
         <div className="flex justify-center mb-4 mt-6">
-        <Button className="bg-[#009E7F] mx-auto text-xl py-4 rounded-none w-1/3 h-[2.7em]">View all</Button>
+        <Button className="bg-[#009E7F] mx-auto text-xl py-4 rounded-none w-1/3 h-[2.7em]" onClick={handleAllProducts}>View all</Button>
         </div>
       </div>
       <Footer />
